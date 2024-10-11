@@ -6,6 +6,10 @@ import userRouter from './routes/userRoutes.mjs';
 const app = express();
 let PORT = 3000;
 
+//Server static file
+
+//Set view engine
+
 //Middleware
 
 //Routes

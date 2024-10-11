@@ -16,7 +16,7 @@ router.post('/:userId', (req, res) => {
   })
 
 router.get('/:userId', (req, res) => { 
-    console.log(req.user)
+    // console.log(req.user)
     res.send(req.user)
   })
   
@@ -29,8 +29,8 @@ router.delete('/:userId', (req, res) => {
   })
 
 //Middleware
-router.param("userId", (req, res, next, userId) => {  
-    req.user = users[userId]
+router.param("userId", (req, res, next, id) => {  
+    req.user = users[id - 1]
     next();
   })
 
