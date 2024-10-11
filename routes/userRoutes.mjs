@@ -1,7 +1,6 @@
 //Import dependencies
 import express from 'express';
 import { users } from '../data/users.mjs';
-// console.log(users)
 
 const router = express.Router();
 
@@ -29,8 +28,14 @@ router.delete('/:userId', (req, res) => {
   })
 
 //Middleware
-router.param("userId", (req, res, next, id) => {  
+router.param('userId', (req, res, next, id) => {  
     req.user = users[id - 1]
+    //Error handling
+    if (!req.user) {
+        return res.status(404).send('User not found');
+    }
+    // const user = users.find(user => users.id === req.params.id);
+    // req.user = user
     next();
   })
 
