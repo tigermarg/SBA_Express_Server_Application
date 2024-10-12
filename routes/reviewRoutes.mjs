@@ -27,7 +27,8 @@ reviewRouter.post('/', (req, res, next) => {
       header: "Thank You for Your Review!",
       name: newReview.name,
       rating: newReview.rating,
-      review: newReview.review
+      review: newReview.review,
+      image: "/frog.gif"
   })
 
   } else {

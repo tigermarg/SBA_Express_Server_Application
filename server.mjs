@@ -11,6 +11,7 @@ let PORT = 3000;
 
 //Server static file
 app.use(express.static('./styles'));
+app.use(express.static('./images'));
 
 //Set view engine
 app.set("view engine", "ejs");
