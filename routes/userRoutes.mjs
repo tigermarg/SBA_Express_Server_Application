@@ -9,17 +9,16 @@ router.get('/', (req, res) => {
     res.json(users)
   })
   
-//Query parameters
+//Parameters
 router.post('/:userId', (req, res) => {
     res.send(`Post user with userId: ${req.params.userId}`)
   })
 
 router.get('/:userId', (req, res) => { 
-    // console.log(req.user)
-    res.send(req.user)
+    res.send(req.user);
   })
   
-router.patch('/:userId', (req, res) => {
+router.put('/:userId', (req, res) => {
     res.send(`Update user with userId: ${req.params.userId}`)
   })
   
@@ -34,8 +33,6 @@ router.param('userId', (req, res, next, id) => {
     if (!req.user) {
         return res.status(404).send('User not found');
     }
-    // const user = users.find(user => users.id === req.params.id);
-    // req.user = user
     next();
   })
 

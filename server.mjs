@@ -1,8 +1,9 @@
 //Import dependencies
 import express from 'express';
 import userRouter from './routes/userRoutes.mjs';
-import { reviewRouter } from './routes/reviewRoutes.mjs'
-import { classRouter } from './routes/classRoutes.mjs'
+import { reviewRouter } from './routes/reviewRoutes.mjs';
+import { classRouter } from './routes/classRoutes.mjs';
+import bodyParser from 'body-parser';
 
 //Create an instance of express
 const app = express();
@@ -15,6 +16,8 @@ app.use(express.static('./styles'));
 app.set("view engine", "ejs");
 
 //Middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ extended: true }));
 
 //Routes
 app.route('/').get((req, res) => {
@@ -22,13 +25,7 @@ app.route('/').get((req, res) => {
         title: "Reviews",
         message: "We want to hear from you!"
     })
-}).post((req, res) => {
-    res.send(`post`)
-}).patch((req, res) => {
-    res.send(`patch`)
-}).delete((req, res) => {
-    res.send(`delete`)
-});
+})
 
 //Mount router to "/users" and pass router
 app.use("/users", userRouter);

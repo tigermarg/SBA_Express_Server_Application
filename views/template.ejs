@@ -8,12 +8,12 @@
 </head>
 <body>
     <h1><%= message %></h1>
-    <form method="POST">
-        <input placeholder="name" />
+    <form action="/reviews" method="POST">
+        <input type="text" name="name" placeholder="Name" />
         <br>
-        <input placeholder="rating" />
+        <input type="number" name="rating" min="1" max="5" placeholder="Rating (1-5)" style="width: 10rem" />
         <br>
-        <input placeholder="review" />
+        <input tyep="text" name="review" placeholder="Review" />
         <br>
         <button>SUBMIT</button>
     </form>
