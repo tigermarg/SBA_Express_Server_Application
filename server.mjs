@@ -21,9 +21,10 @@ app.use(bodyParser.json({ extended: true }));
 
 //Routes
 app.get('/', (req, res) => {
-    res.render("template", {
-        title: "Reviews",
-        message: "We want to hear from you!"
+    res.render("main", {
+        title: "Home",
+        header: "We want to hear from you!",
+        message: "Tell us about your experience by rating your program and leaving a review."
     })
 })
 

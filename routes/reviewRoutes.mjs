@@ -22,7 +22,13 @@ reviewRouter.post('/', (req, res, next) => {
     };
     // console.log(newReview)
     reviews.push(newReview);
-    res.send(newReview)
+    res.render("submitted", {
+      title: "Submitted",
+      header: "Thank You for Your Review!",
+      name: newReview.name,
+      rating: newReview.rating,
+      review: newReview.review
+  })
 
   } else {
     //Error handling
@@ -31,7 +37,7 @@ reviewRouter.post('/', (req, res, next) => {
 })
 
 
-//Parameters
+//Parameters for review filtering
 reviewRouter.get('/:id', (req, res, next) => { 
     // console.log(req.params.id)
     const user = reviews.find(user => {

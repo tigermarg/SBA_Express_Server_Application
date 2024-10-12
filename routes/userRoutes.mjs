@@ -10,12 +10,12 @@ router.get('/', (req, res) => {
     res.json(users)
   })
   
-//Parameters
+//Parameter for user filtering
 router.get('/:userId', (req, res) => { 
     res.send(req.user);
   })
 
-//Middleware
+//Custom Middleware
 router.param('userId', (req, res, next, id) => {  
     req.user = users[id - 1]
     //Error handling

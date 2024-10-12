@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css" />
+    <title><%= title %></title>
+</head>
+<body>
+    <h1><%= header %></h1>
+    <p><%= message %></p>
+    <!-- Form with POST request -->
+    <form action="/reviews" method="POST">
+        <label>Name:</label><br>
+        <input id="name" type="text" name="name" />
+        <br><br>
+        <label>Rate you experience (1-5):</label><br>
+        <input id="rating" type="number" name="rating" min="1" max="5" />
+        <br><br>
+        <label>Review:</label><br>
+        <input id="review" type="text" name="review" />
+        <br><br>
+        <button>SUBMIT</button>
+    </form>
+    
+</body>
+</html>

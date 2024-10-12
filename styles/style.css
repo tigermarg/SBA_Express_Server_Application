@@ -4,3 +4,20 @@ html {
     font-family:'Courier New', Courier, monospace;
 }
 
+form {
+    font-size: larger;
+}
+
+#name {
+    width: 20rem;
+    height: 2rem;
+}
+
+#rating {
+    height: 2rem;
+}
+
+#review {
+    width: 30rem;
+    height: 5rem;
+}
