@@ -1,6 +1,7 @@
 //Import dependencies
 import express from 'express';
 import { classes } from '../data/classes.mjs';
+import error from '../utilities/error.mjs';
 
 const classRouter = express.Router();
 
@@ -10,7 +11,7 @@ classRouter.get('/', (req, res) => {
   })
 
 //Parameters
-classRouter.get('/:userId', (req, res) => { 
+classRouter.get('/:userId', (req, res, next) => { 
     // console.log(req.params.userId)
     const user = classes.find(user => {
         console.log(user.userId)
@@ -18,12 +19,9 @@ classRouter.get('/:userId', (req, res) => {
             return true;
        }
     }) 
-    // error handling
-    if (req.params.userId < classes.length + 1){
-      res.json(user); 
-    } else {
-      res.status(404).send('User not found');
-    }
+    //Error handling
+    if (user) res.json(user);
+    else next(error(404,'User not found'));
   })
 
 //Export default 

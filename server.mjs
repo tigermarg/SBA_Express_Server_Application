@@ -20,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ extended: true }));
 
 //Routes
-app.route('/').get((req, res) => {
+app.get('/', (req, res) => {
     res.render("template", {
         title: "Reviews",
         message: "We want to hear from you!"

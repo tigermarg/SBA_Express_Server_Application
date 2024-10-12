@@ -1,6 +1,8 @@
 //Import dependencies
 import express from 'express';
 import { reviews } from '../data/reviews.mjs';
+import error from '../utilities/error.mjs';
+
 
 const reviewRouter = express.Router();
 
@@ -10,7 +12,7 @@ reviewRouter.get('/', (req, res) => {
 })
 
 //Post request for new review
-reviewRouter.post('/', (req, res) => {
+reviewRouter.post('/', (req, res, next) => {
   if (req.body.name && req.body.rating && req.body.review) {
     let newReview = {
       id: reviews.length + 1,
@@ -23,13 +25,14 @@ reviewRouter.post('/', (req, res) => {
     res.send(newReview)
 
   } else {
-    res.status(400).send('Insufficient Data');
+    //Error handling
+    next(error(400,'Insufficient Data'));
   }
 })
 
 
 //Parameters
-reviewRouter.get('/:id', (req, res) => { 
+reviewRouter.get('/:id', (req, res, next) => { 
     // console.log(req.params.id)
     const user = reviews.find(user => {
         console.log(user.id)
@@ -37,12 +40,12 @@ reviewRouter.get('/:id', (req, res) => {
             return true;
         } 
     }) 
-    // error handling
+      //Error handling
       if (user) res.json(user);
-      else res.status(404).send('Review not found');
+      else next(error(404,'Review not found'));
     })
 
-reviewRouter.put('/:id', (req, res) => {
+reviewRouter.put('/:id', (req, res, next) => {
     const user = reviews.find((user, i) => {
       if (user.id == req.params.id) {
         for (const key in req.body) {
@@ -51,21 +54,21 @@ reviewRouter.put('/:id', (req, res) => {
         return true;
       }
     });
-    //error handling
+    //Error handling
     if (user) res.json(user);
-    else res.status(404).send('Review not found');
+    else next(error(404,'Review not found'));
   })
   
-reviewRouter.delete('/:id', (req, res) => {  
+reviewRouter.delete('/:id', (req, res, next) => {  
   const user = reviews.find((user, i) => {
       if (user.id == req.params.id) {
         reviews.splice(i, 1);
         return true;
       }
     });
-    //error handling
+    //Error handling
     if (user) res.json(user);
-    else res.status(404).send('Review not found');
+    else next(error(404,'Review not found'));
   })
 
 //Export default 
