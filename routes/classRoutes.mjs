@@ -5,16 +5,16 @@ import error from '../utilities/error.mjs';
 
 const classRouter = express.Router();
 
-//Get request for /reviews
+//GET route for /classes
 classRouter.get('/', (req, res) => {
     res.json(classes)
   })
 
-//Parameters
+//Parameters for user filtering using GET route
 classRouter.get('/:userId', (req, res, next) => { 
     // console.log(req.params.userId)
     const user = classes.find(user => {
-        console.log(user.userId)
+        // console.log(user.userId)
        if(user.userId == req.params.userId){
             return true;
        }

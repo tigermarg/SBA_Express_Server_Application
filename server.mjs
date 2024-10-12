@@ -20,6 +20,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json({ extended: true }));
 
 //Routes
+    //GET route for main view
 app.get('/', (req, res) => {
     res.render("main", {
         title: "Home",

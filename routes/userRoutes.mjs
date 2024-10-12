@@ -5,12 +5,12 @@ import error from '../utilities/error.mjs';
 
 const router = express.Router();
 
-//Get request for /users
+//GET route for /users
 router.get('/', (req, res) => {
     res.json(users)
   })
   
-//Parameter for user filtering
+//Parameter for user filtering using GET route
 router.get('/:userId', (req, res) => { 
     res.send(req.user);
   })
