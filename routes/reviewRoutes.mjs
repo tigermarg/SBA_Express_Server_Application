@@ -23,7 +23,7 @@ reviewRouter.post('/', (req, res) => {
     res.send(newReview)
 
   } else {
-    res.send(`Incorrect Info`);
+    res.status(400).send('Insufficient Data');
   }
 })
 
@@ -38,19 +38,34 @@ reviewRouter.get('/:id', (req, res) => {
         } 
     }) 
     // error handling
-      if (req.params.id < reviews.length + 1){
-        res.json(user); 
-      } else {
-        res.status(404).send('Review not found');
-      }
-  })
+      if (user) res.json(user);
+      else res.status(404).send('Review not found');
+    })
 
 reviewRouter.put('/:id', (req, res) => {
-    res.send(`Update review with id: ${req.params.id}`)
+    const user = reviews.find((user, i) => {
+      if (user.id == req.params.id) {
+        for (const key in req.body) {
+          reviews[i][key] = req.body[key];
+        }
+        return true;
+      }
+    });
+    //error handling
+    if (user) res.json(user);
+    else res.status(404).send('Review not found');
   })
   
 reviewRouter.delete('/:id', (req, res) => {  
-    res.send(`Delete review with id: ${req.params.id}`)
+  const user = reviews.find((user, i) => {
+      if (user.id == req.params.id) {
+        reviews.splice(i, 1);
+        return true;
+      }
+    });
+    //error handling
+    if (user) res.json(user);
+    else res.status(404).send('Review not found');
   })
 
 //Export default 
